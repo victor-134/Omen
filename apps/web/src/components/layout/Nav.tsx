@@ -8,9 +8,38 @@ import { Menu, X } from "lucide-react";
 export function Nav() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isLoggingIn, setIsLoggingIn] = React.useState(false);
+  const [isConnecting, setIsConnecting] = React.useState(false);
+  const [walletAddress, setWalletAddress] = React.useState<string | null>(null);
+
+  const handleConnect = () => {
+    setIsConnecting(true);
+    setTimeout(() => {
+      setIsConnecting(false);
+      setWalletAddress("0x7...f4ae");
+      setIsOpen(false);
+    }, 1500);
+  };
+
   const loginButton = (
     <Button asChild variant="secondary" size="sm">
       <Link href="/login">Login</Link>
+    </Button>
+  );
+
+  const walletButton = walletAddress ? (
+    <div className="flex items-center gap-2 px-3 h-8 bg-foreground/5 border border-border rounded-none group cursor-default">
+      <div className="w-2 h-2 bg-green-500 rounded-full" />
+      <span className="text-[10px] font-bold uppercase tracking-tighter text-foreground">
+        {walletAddress}
+      </span>
+    </div>
+  ) : (
+    <Button 
+      size="sm" 
+      onClick={handleConnect}
+      isLoading={isConnecting}
+    >
+      Connect Wallet
     </Button>
   );
 
@@ -48,7 +77,7 @@ export function Nav() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-4">
               {loginButton}
-              <Button size="sm">Connect Wallet</Button>
+              {walletButton}
             </div>
             <button
               className="md:hidden p-2 text-foreground"
@@ -88,7 +117,7 @@ export function Nav() {
                 <div className="py-2">
                   {loginButton}
                 </div>
-                <Button className="w-full justify-start">Connect Wallet</Button>
+                {walletButton}
               </div>
             </div>
           </div>
