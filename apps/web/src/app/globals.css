@@ -168,6 +168,18 @@ body {
   100% { transform: rotate(360deg) translate(0, 0); }
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
 /* ─── Premium Glassmorphism Redux ──────────────────────────────────────── */
 .glass-panel {
   background: rgba(255, 255, 255, 0.4);
@@ -223,15 +235,17 @@ body {
 /* ─── Form elements ─────────────────────────────────────────────────────── */
 .omen-input {
   width: 100%;
-  min-height: 44px;
-  background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(11, 18, 32, 0.08);
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #E5E7EB;
   border-radius: 12px;
-  padding: 12px 16px;
   font-size: 16px;
   color: #0B1220;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   outline: none;
-  transition: all 200ms ease-out;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .omen-input::placeholder {
@@ -239,8 +253,8 @@ body {
 }
 
 .omen-input:focus {
-  border-color: #2B5C92;
-  box-shadow: 0 0 0 3px rgba(43, 92, 146, 0.1);
+  border-color: #EF4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
   background: #FFFFFF;
 }
 
